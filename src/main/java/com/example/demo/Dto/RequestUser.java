@@ -28,4 +28,5 @@ public class RequestUser {
     String password ;
     @Min(value = 1,message = "departmentId is required")
     Long departmentId;
+    Long user_id ;
 }
