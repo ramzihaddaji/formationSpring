@@ -30,12 +30,12 @@ public class User {
     private Instant createdAt ;
     @UpdateTimestamp
     private Instant updatedAt;
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department ;
-
-    @OneToMany(mappedBy="user")
-    private List<Task> tasks ;
+//    @ManyToOne
+//    @JoinColumn(name = "department_id")
+//    private Department department ;
+//
+//    @OneToMany(mappedBy="user")
+//    private List<Task> tasks ;
 
 
 

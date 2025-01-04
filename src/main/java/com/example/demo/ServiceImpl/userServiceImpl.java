@@ -1,12 +1,12 @@
 package com.example.demo.ServiceImpl;
 
-import com.example.demo.Dto.RequestDepartment;
+
 import com.example.demo.Dto.RequestUser;
 import com.example.demo.Dto.RequestUserUpdate;
 import com.example.demo.Dto.ResponseUser;
-import com.example.demo.Entities.Department;
+
 import com.example.demo.Entities.User;
-import com.example.demo.Repository.DepartmentRepository;
+
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +23,7 @@ import java.util.Optional;
 public class userServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private DepartmentRepository departmentRepository;
+
     private final PasswordEncoder passwordEncoder ;
     @Override
     public List<ResponseUser> getAllUser(){
@@ -38,12 +37,12 @@ public class userServiceImpl implements UserService {
     }
     @Override
     public void createUser(RequestUser userRequest){
-        Department department = departmentRepository.findById(userRequest.getDepartmentId()).orElseThrow();
+
         User user = User.builder()
                 .lastName(userRequest.getLastName())
                 .firstName(userRequest.getFirstName())
                 .phoneNumber(userRequest.getPhoneNumber())
-                .department(department)
+
                 .email(userRequest.getEmail())
                 .password(passwordEncoder.encode(userRequest.getPassword()))
                 .status(true)
@@ -73,10 +72,7 @@ public class userServiceImpl implements UserService {
         if (userReqeust.getEmail() != null){
             user.setEmail(userReqeust.getEmail());
         }
-        if (userReqeust.getDepartmentId() != null){
-            Department department = departmentRepository.getById(userReqeust.getDepartmentId());
-            user.setDepartment(department);
-        }
+
         return userRepository.save(user);
     }
     @Override

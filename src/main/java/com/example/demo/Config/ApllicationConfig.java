@@ -17,12 +17,23 @@ public class ApllicationConfig implements WebMvcConfigurer {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry){
+//        registry.addMapping("/formation/**")
+//                .allowedOrigins("http://localhost:4200")
+//                .allowedMethods("GET","POST","PUT","DELETE")
+//                .allowedHeaders("Origin","x-Requested-with","Content-Type","Accept")
+//                .allowCredentials(true);
+//    }
+
+
     @Override
-    public void addCorsMappings(CorsRegistry registry){
-        registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET","POST","PUT","DELETE")
-                .allowedHeaders("Origin","x-Requested-with","Content-Type","Accept")
-                .allowCredentials(true);
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // Applique à tous les endpoints
+                .allowedOrigins("http://localhost:4200") // Autorise le frontend Angular
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Méthodes autorisées
+                .allowedHeaders("*") // Autorise tous les en-têtes
+                .allowCredentials(true); // Pour inclure des cookies ou des informations d'identité
     }
+
 }
